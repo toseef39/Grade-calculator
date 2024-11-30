@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>    
+    <div id="container">
+        <h1>Grade Calculator</h1>
+      <div class="marks">
+        <input type="text" id="obtainedmarks" placeholder="Obtained Marks">
+      </div>
+      <div class="marks">
+        <input type="text" id="Totalmarks" placeholder="Total Marks">
+      </div>
+      <div class="btn">
+        <button onclick="calculatePercentage()">Submit</button>
+      </div> 
+      <div id="message" style="margin-top: 40px; font-size: 18px; color: rgb(78, 88, 78);"></div>
+    </div>
+    
+    <script>
+      function calculatePercentage() {
+        let obtainedMarks = Number(document.getElementById("obtainedmarks").value);
+        let totalMarks = Number(document.getElementById("Totalmarks").value);
+        if (isNaN(obtainedMarks) || isNaN(totalMarks) || totalMarks <= 0) {
+          document.getElementById("message").innerText = "Please enter valid marks.";
+          return;
+        }
+    
+        let percentage = (obtainedMarks / totalMarks) * 100;
+        let messageDiv = document.getElementById("message");
+        switch (true) {
+          case (percentage >= 80 && percentage <= 100):
+            console.log("A+ Grade - Percentage: " + percentage + "%");
+            messageDiv.innerText = "Congratulations! You have passed with "+ percentage+"% " + " & A+ Grade. Keep it up! ";
+            break;
+    
+          case (percentage >= 70 && percentage < 80):
+            console.log("A Grade - Percentage: " + percentage + "%");
+            messageDiv.innerText = "Well done! You passed " +percentage+"% " +" with A Grade.";
+            break;
+    
+          case (percentage >= 60 && percentage < 70):
+            console.log("B Grade - Percentage: " + percentage + "%");
+            messageDiv.innerText ="Good job! You passed with "+ percentage+"% " + " B Grade.";
+            break;
+    
+          case (percentage >= 50 && percentage < 60):
+            console.log("C Grade - Percentage: " + percentage + "%");
+            messageDiv.innerText ="You passed with "+ percentage+"% " + " & C Grade. Try to improve next time!";
+            break;
+    
+          case (percentage >= 0 && percentage < 50):
+            console.log("Fail - Percentage: " + percentage + "%");
+            messageDiv.innerText = "Unfortunately, you did not pass. Better luck next time!";
+            break;
+    
+          default:
+            console.log("Invalid marks.");
+            messageDiv.innerText = "Invalid marks entered.";
+        }
+      }
+    </script>
+    
+
+    
+</body>
+</html>
